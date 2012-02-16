@@ -12,15 +12,15 @@ class Problem(problem.Problem):
 		limit = 10000
 		primes = getPrimes(limit)
 		
-		assert sum(getDivisors(220, primes)) - 220 == 284
-		assert sum(getDivisors(284, primes)) - 284 == 220
+		assert sum(getDivisors(220)) - 220 == 284
+		assert sum(getDivisors(284)) - 284 == 220
 		
 		isAmicable = [None for i in xrange(limit)]
 		ret = 0
 		for i in xrange(1, limit+1):
 			if isAmicable[i-1] is None:
-				j = sum(getDivisors(i, primes)) - i
-				if j < limit and i != j and isAmicable[j-1] == None and sum(getDivisors(j, primes)) - j == i:
+				j = sum(getDivisors(i)) - i
+				if j < limit and i != j and isAmicable[j-1] == None and sum(getDivisors(j)) - j == i:
 					isAmicable[i-1] = True
 					isAmicable[j-1] = True
 					ret += i + j

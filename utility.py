@@ -15,13 +15,23 @@ def findNextPrime(primes):
 			return i
 		i += 1
 
-def getPrimes(limit):
-	ret = []
+def getPrimes2(limit, primes):
 	p = 2
-	while p <= limit:
-		ret.append(p)
-		p = findNextPrime(ret)
-	return ret
+	if len(primes) != 0:
+		p = primes[-1]
+	if p > limit:
+		return primes
+
+	while True:
+		p = findNextPrime(primes)
+		if p > limit:
+			break
+		primes.append(p)
+	
+	return primes
+
+def getPrimes(limit):
+	return getPrimes2(limit, [2])
 
 def factorize(n, primes):
 	if isPrime(n, primes):
@@ -38,7 +48,16 @@ def factorize(n, primes):
 				ret[1][-1] += 1
 	return ret
 		
-def getDivisors(n, primes):
+def getDivisors(n):
+	ret = []
+	for i in xrange(1, int(math.sqrt(n) + 1)):
+		if n % i == 0:
+			ret.append(i)
+			if i*i != n:
+				ret.append(n/i)
+	return ret
+
+def getDivisors2(n, primes):
 	def enumerateFactors(factors):
 		ret = [0 for i in factors[1]]
 		isDone = False
