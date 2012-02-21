@@ -1,6 +1,8 @@
 import math
 
 def isPrime(number, primes):
+	if number == 1:
+		return False
 	for p in primes:
 		if p * p > number:
 			return True
@@ -15,7 +17,7 @@ def findNextPrime(primes):
 			return i
 		i += 1
 
-def getPrimes2(limit, primes):
+def getPrimesFrom(limit, primes):
 	p = 2
 	if len(primes) != 0:
 		p = primes[-1]
@@ -31,7 +33,7 @@ def getPrimes2(limit, primes):
 	return primes
 
 def getPrimes(limit):
-	return getPrimes2(limit, [2])
+	return getPrimesFrom(limit, [2])
 
 def factorize(n, primes):
 	if isPrime(n, primes):

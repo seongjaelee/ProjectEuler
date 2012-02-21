@@ -6,7 +6,7 @@ from utility import *
 class Problem(problem.Problem):
 	def __init__(self):
 		number = 30
-		question = ''
+		question = 'Find the sum of all the numbers that can be written as the sum of fifth powers of their digits.'
 		problem.Problem.__init__(self, number, question)
 
 	def getAnswer(self):
@@ -49,7 +49,6 @@ class Problem(problem.Problem):
 				for e in enumerateNumbers(c):
 					if e == v and v >= 2:
 						ret += v
-						print v
 						break
 			return ret
 		

@@ -16,7 +16,7 @@ class Problem(problem.Problem):
 				v = n * n + a * n + b
 				if v <= 0:
 					break
-				primes = getPrimes2(v, primes)
+				primes = getPrimesFrom(v, primes)
 				if isPrime(v, primes):
 					n += 1
 				else:

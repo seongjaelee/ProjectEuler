@@ -6,7 +6,7 @@ from utility import *
 class Problem(problem.Problem):
 	def __init__(self):
 		number = 28
-		question = ''
+		question = 'What is the sum of both diagonals in a 1001 by 1001 spiral?'
 		problem.Problem.__init__(self, number, question)
 
 	def getAnswer(self):
