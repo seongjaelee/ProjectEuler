@@ -9,11 +9,5 @@ class Problem(problem.Problem):
 		problem.Problem.__init__(self, number, question)
 
 	def getAnswer(self):
-		ret = 0
-		primes = []
-		p = 2
-		while p <= 2000000:
-			ret += p
-			primes.append(p)
-			p = findNextPrime(primes)	
-		return ret
+		return sum(getPrimes(2000000))
+		

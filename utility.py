@@ -11,11 +11,13 @@ def isPrime(number, primes):
 	return True
 
 def findNextPrime(primes):
-	i = primes[-1] + 1
+	i = 3
+	if primes[-1] != 2:
+		i = primes[-1] + 2
 	while True:
 		if isPrime(i, primes):
 			return i
-		i += 1
+		i += 2
 
 def getPrimesFrom(limit, primes):
 	p = 2
@@ -33,21 +35,32 @@ def getPrimesFrom(limit, primes):
 	return primes
 
 def getPrimes(limit):
-	return getPrimesFrom(limit, [2])
+	isPrime = [True] * (limit + 1)
+	isPrime[0] = False
+	isPrime[1] = False
+	ret = [2]
+	for i in xrange(3, limit, 2):
+		if isPrime[i]:
+			ret.append(i)
+			for j in xrange(3*i, limit, i*2):
+				isPrime[j] = False
+	return ret
 
 def factorize(n, primes):
-	if isPrime(n, primes):
-		return ([n], [1])
-
 	ret = ([], [])
+	m = n
 	for p in primes:
-		m = n
 		if m % p == 0:
 			ret[0].append(p)
-			ret[1].append(0)
+			ret[1].append(1)
+			m /= p
 			while m % p == 0:
 				m /= p
 				ret[1][-1] += 1
+	
+	if len(ret[0]) == 0:
+		return ([n], [1])
+	
 	return ret
 		
 def getDivisors(n):
